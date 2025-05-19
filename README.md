@@ -13,7 +13,7 @@ npm install
 2. Configure environment variables:
   - Locate `env.example.ts` in the project root
   - Create a copy named `env.secret.ts`
-  - Update `env.secret.ts` with your Steam account credentials:
+  - Update `env.secret.ts` with your Steam account ID:
   ```typescript
    export const STEAM_ID = "abcd"; // <- replace with your actual Steam ID
   ```

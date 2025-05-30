@@ -58,35 +58,18 @@ async function updateHeroGrid() {
       fs.renameSync(targetFile, backupFile);
       console.log("Backed up existing grid to hero_grid_config_backup.json");
 
-      // merge the two grids by config_name, but keep categories from existingGrid
-
-      const mergedGrid: Grid = {
-        version: proTrackerGrid.version,
-        configs: [...existingGrid.configs]
-      }
-
-      for (const config of proTrackerGrid.configs) {
-        const existingConfig = existingGrid.configs.find(c => c.config_name === config.config_name);
-        if (existingConfig) {
-          mergedGrid.configs.push({
-            ...config,
-            categories: existingConfig.categories
-          });
-        } else {
-          mergedGrid.configs.push(config);
-        }
-      }
+      const mergedGrid = Grid.mergeWith({
+        a: existingGrid,
+        b: proTrackerGrid,
+      })
      
 
       fs.writeFileSync(targetFile, JSON.stringify(mergedGrid, null, 2))
       console.log("Updated hero grid successfully!");
     }
-
-
-
   } catch (err) {
     console.error("Failed to update hero grid:", err)
   }
 }
 
-updateHeroGrid();
+updateHeroGrid()

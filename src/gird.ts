@@ -21,13 +21,15 @@ export namespace Grid {
   /**
    * We will take everything from `a` and merge it with `b`.
    */
-  export function mergeWith({ a, b }: { a: Grid, b: Grid }): Grid {
+  export function mergeWith({ baseGrid, updateGrid }: { baseGrid: Grid, updateGrid: Grid }): Grid {
+    // Start with the base grid's version and configurations
     const merged: Grid = {
-      version: a.version,
-      configs: [...a.configs]
+      version: baseGrid.version,
+      configs: [...baseGrid.configs]
     }
 
-    for (const { config_name, categories } of b.configs) {
+    // Iterate through the update grid's configurations
+    for (const { config_name, categories } of updateGrid.configs) {
       const existingConfig = merged.configs.find(mergedConfig => mergedConfig.config_name === config_name);
 
       if (existingConfig) {

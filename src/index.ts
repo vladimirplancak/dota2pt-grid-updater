@@ -59,8 +59,8 @@ async function updateHeroGrid() {
       console.log("Backed up existing grid to hero_grid_config_backup.json");
 
       const mergedGrid = Grid.mergeWith({
-        a: existingGrid,
-        b: proTrackerGrid,
+        baseGrid: existingGrid,
+        updateGrid: proTrackerGrid,
       })
      
 

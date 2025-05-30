@@ -8,8 +8,7 @@ import { Grid } from './gird'
 
 
 const dotaCfgPath = path.join(
-  "C:",
-  "Program Files (x86)",
+  env.STEAM_BASE_PATH,
   "Steam",
   "userdata",
   env.STEAM_ID,
